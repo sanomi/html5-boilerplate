@@ -28,7 +28,6 @@
     var showNextSlide = function(slideObject) {
 
     var body = document.querySelectorAll('body')[0];
-    // console.log(body);
     body.style.backgroundColor = randColor();
     var rgb = getComputedStyle(body)['background-color'];
     var hex = rgbToHex(rgb);
@@ -47,14 +46,20 @@
 
     var intervalId = setInterval(function() {
     remainingSecondsDiv.textContent = --remainingSeconds;
+    var button = document.querySelectorAll('button')[0]
+        console.log(button)
+        button.addEventListener("click", function() {
+            clearInterval(intervalId);
+            showNextSlide();
+        });
     if (remainingSeconds === 0) {
         clearInterval(intervalId);
         showNextSlide();
     }
-    }, 10);
+    }, 1000);
 };
 
-var request = new XMLHttpRequest();
+    var request = new XMLHttpRequest();
     request.open('GET', '/data.json', true);
 
     request.onload = function() {
