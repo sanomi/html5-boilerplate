@@ -7,6 +7,17 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+#remainingSeconds {
+    font-size: 20vw;
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+}
+#instructions {
+    font-size: 10vw;
+    text-align: center;
+    margin-top: 15%;
+}
 
 html {
     color: #222;

@@ -1,0 +1,14 @@
+{ "data": [
+{ "instructions" : "go to your home directory", "seconds": 20},
+{ "instructions" : "create directory call it git_rocks", "seconds": 30},
+{ "instructions" : "cd into the new directory", "seconds": 20},
+{ "instructions" : "create an empty file name it Readme", "seconds": 50},
+{ "instructions" : "add the output of the command `date` as the first line to your Readme (without copy/paste)", "seconds": 80},
+{ "instructions" : "Make git_rocks into a git repo", "seconds": 40},
+{ "instructions" : "create your first commit that has the Readme file", "seconds": 50},
+{ "instructions" : "create a public github repo git_rocks", "seconds": 90},
+{ "instructions" : "add it as your remote to the local git_rocks", "seconds": 50},
+{ "instructions" : "push the commit you have to github", "seconds": 50},
+{ "instructions" : "in github, add hello from github to the Readme file","seconds": 90},
+{ "instructions" : "pull the changes you made in github to your local git_rocks", "seconds": 50}
+]}

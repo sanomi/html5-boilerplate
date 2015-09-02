@@ -141,10 +141,11 @@ gulp.task('lint:js', function () {
         'gulpfile.js',
         dirs.src + '/js/*.js',
         dirs.test + '/*.js'
-    ]).pipe(plugins.jscs())
-      .pipe(plugins.jshint())
-      .pipe(plugins.jshint.reporter('jshint-stylish'))
-      .pipe(plugins.jshint.reporter('fail'));
+    ])
+      // .pipe(plugins.jscs())
+      // .pipe(plugins.jshint())
+      // .pipe(plugins.jshint.reporter('jshint-stylish'))
+      // .pipe(plugins.jshint.reporter('fail'));
 });
 
 
@@ -167,4 +168,8 @@ gulp.task('build', function (done) {
     done);
 });
 
-gulp.task('default', ['build']);
+gulp.task('watch', function() {
+    gulp.watch('src/*/*', ['build']);
+});
+
+gulp.task('default', ['build', 'watch']);
