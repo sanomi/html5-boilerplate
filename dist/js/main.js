@@ -27,49 +27,58 @@
 
   var showNextSlide = function() {
 
-  var eventHandler = function() {
-      event.stopPropagation();
-      clearInterval(intervalId);
-      showNextSlide();
-      button.removeEventListener("click", eventHandler);
-    }
+    var eventHandler = function() {
+        event.stopPropagation();
+        clearInterval(intervalId);
+        showNextSlide();
+        button.removeEventListener("click", eventHandler);
+      }
 
-  var button = document.querySelectorAll('button')[0];
-  var buttonListener = button.addEventListener("click", 
-   eventHandler);
+    var button = document.querySelectorAll('button')[0];
+    var buttonListener = button.addEventListener("click", 
+     eventHandler);
 
 
-  var body = document.querySelectorAll('body')[0];
-  body.style.backgroundColor = randColor();
-  var rgb = getComputedStyle(body)['background-color'];
-  var hex = rgbToHex(rgb);
-  body.style.color = invertColor(hex);
+    var body = document.querySelectorAll('body')[0];
+    body.style.backgroundColor = randColor();
+    var rgb = getComputedStyle(body)['background-color'];
+    var hex = rgbToHex(rgb);
+    body.style.color = invertColor(hex);
 
-  var slideObject = data[++currentSlideId];
+    var slideObject = data[++currentSlideId];
 
-  var remainingSeconds = slideObject.seconds;
-  var remainingSecondsDiv = document.getElementById('remainingSeconds');
-  var instructionsDiv = document.getElementById('instructions');
+    var remainingSeconds = slideObject.seconds;
+    var remainingSecondsDiv = document.getElementById('remainingSeconds');
+    var instructionsDiv = document.getElementById('instructions');
 
-  remainingSecondsDiv.textContent = remainingSeconds;
-  instructionsDiv.textContent = slideObject.instructions;
+    remainingSecondsDiv.textContent = remainingSeconds;
+    instructionsDiv.textContent = slideObject.instructions;
 
-  remainingSecondsDiv.textContent = remainingSeconds;
+    remainingSecondsDiv.textContent = remainingSeconds;
 
-  var intervalId = setInterval(function() {
-    remainingSecondsDiv.textContent = --remainingSeconds;
-    if (remainingSeconds === 0) {
-      clearInterval(intervalId);
-      showNextSlide();
-    }
-}, 1000);
+    var intervalId = setInterval(function() {
+      remainingSecondsDiv.textContent = --remainingSeconds;
+      if (remainingSeconds === 0) {
+        clearInterval(intervalId);
+        showNextSlide();
+      }
+  }, 1000);
 
-    if (slideObject === data[data.length-1]) {
-        instructionsDiv.textContent = 'Done.'
-        remainingSecondsDiv.textContent = ' ';
-    }
-};
+      if (slideObject === data[data.length-1]) {
+          instructionsDiv.textContent = 'Done.'
+          remainingSecondsDiv.textContent = ' ';
+      }
+  };
 
+  var countDown = function() {
+    var total = 620;
+     var originalSecondsDiv = document.getElementById('originalSeconds');
+     // originalSecondsDiv.textContent = '0%';
+     var progressBar = document.getElementById('progress');
+     var totalRemainingSeconds = setInterval(function() {
+      progressBar.style.width = (100- (--total/620) * 100 ).toFixed(2) + '%' ;
+        }, 1000);
+  }
   var request = new XMLHttpRequest();
   request.open('GET', '/data.json', true);
 
@@ -77,8 +86,8 @@
     if (request.status >= 200 && request.status < 400) {
                   // Success!
     data = JSON.parse(request.responseText).data;
-
     showNextSlide();
+    countDown();
       }
 
   };
